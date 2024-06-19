@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    h1 Welcome to Toy Store-y
+    br
+    br
+    h2 Categories
+    p Number of categories: #{num_of_categories}
+    a(href='/categories', class='button') Manage categories
+    h2 Items
+    p Number of items in stock: #{num_of_items}
+    a(href='/items', class='button') Manage items

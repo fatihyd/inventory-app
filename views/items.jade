@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .container
+    h1 Item List
+    if items.length > 0
+      table
+        thead
+          tr
+            th Name
+            th Description
+            th Category
+            th Price
+            th Number in Stock
+            th Actions
+        tbody
+          each item in items
+            tr
+              td #{item.name}
+              td #{item.description}
+              td #{item.category}
+              td #{item.price}
+              td #{item.number_in_stock}
+              td
+                a(href='/' + item._id + '/update', class='button') Update
+                form(method='POST', action='/' + item._id + '/delete')
+                  button(type='submit') Delete
+    else
+      p No items found.

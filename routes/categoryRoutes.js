@@ -1,11 +1,19 @@
 var express = require("express");
 var router = express.Router();
+const Category = require("../models/category");
 
 // Route to show all categories
 router
   .route("/")
   .get(async (req, res) => {
   // Show all categories
+  try {
+    const categories = await Category.find();
+    res.render("categories", { categories });
+  } catch(err) {
+    console.log(err);
+    res.status(500).send("Error fetching categories");
+  }
 });
 
 // Routes for creating a new category
@@ -17,13 +25,6 @@ router
   .post(async (req, res) => {
     // Create a new category
   });
-
-// Route to show a specific category
-router
-  .route("/:id")
-  .get(async (req, res) => {
-  // Show the detailed category page
-});
 
 // Routes for updating a category
 router

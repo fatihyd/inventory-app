@@ -26,20 +26,6 @@ router
     // Create a new item
   });
 
-// Route to show a specific item
-router
-  .route("/:id")
-  .get(async (req, res) => {
-  // Show the detailed item page
-  try {
-    const item = await Item.findById(req.params.id);
-    res.render("item", { item });
-  } catch(err) {
-    console.log(err);
-    res.status(500).send("Error fetching item");
-  }
-});
-
 // Routes for updating an item
 router
   .route("/:id/update")

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .container
+    h1 Categories
+
+    if categories.length > 0
+      table
+        thead
+          tr
+            th Name
+            th Description
+            th Actions
+        tbody
+          each category in categories
+            tr
+              td #{category.name}
+              td #{category.description}
+              td
+                a(href='/' + category._id + '/update', class='button') Update
+                form(method='POST', action='/' + category._id + '/delete')
+                  button(type='submit') Delete
+    else
+      p No categories found.
