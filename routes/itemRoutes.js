@@ -43,17 +43,14 @@ router
     }
   });
 
-// Routes for updating an item
 router
   .route("/:id/update")
   .get(async (req, res) => {
-    // Show the page for updating an item
     const item = await Item.findById(req.params.id);
     const categories = await Category.find();
     res.render("update_item", { item, categories });
   })
   .post(async (req, res) => {
-    // Update an item
     const { name, description, category, price, number_in_stock } = req.body;
 
     const categoryObj = await Category.findById(category);

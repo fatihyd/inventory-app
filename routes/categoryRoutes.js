@@ -36,14 +36,23 @@ router
     }
   });
 
-// Routes for updating a category
 router
   .route("/:id/update")
   .get(async (req, res) => {
-    // Show the page for updating a category
+    const category = await Category.findById(req.params.id);
+    res.render("update_category", { category });
   })
   .post(async (req, res) => {
     // Update a category
+    const { name, description } = req.body;
+
+    const category = await Category.findById(req.params.id);
+
+    category.name = name;
+    category.description = description;
+
+    await category.save();
+    res.redirect("/categories");
   });
 
 router

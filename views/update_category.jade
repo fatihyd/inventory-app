@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Update category
+  .container
+    form(method='POST', action='/categories/' + category._id + '/update')
+      fieldset
+        label(for='name') Name:
+        input#name(type='text', name='name', value=category.name)
+        label(for='description') Description:
+        input#description(type='text', name='description', value=category.description)
+        input(type='submit', value='Submit')
