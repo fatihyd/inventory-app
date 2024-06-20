@@ -3,6 +3,10 @@ extends layout
 block content
   .container
     h1 Categories
+    a(href='/categories/create', class='button') Create new category!
+    br
+    br
+    br
 
     if categories.length > 0
       table

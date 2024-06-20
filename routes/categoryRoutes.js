@@ -2,11 +2,9 @@ var express = require("express");
 var router = express.Router();
 const Category = require("../models/category");
 
-// Route to show all categories
 router
   .route("/")
   .get(async (req, res) => {
-  // Show all categories
   try {
     const categories = await Category.find();
     res.render("categories", { categories });
@@ -16,14 +14,26 @@ router
   }
 });
 
-// Routes for creating a new category
 router
   .route("/create")
   .get(async (req, res) => {
-    // Show the page for creating a new category
+    res.render("create_category");
   })
   .post(async (req, res) => {
     // Create a new category
+    const { name, description } = req.body;
+    const newCategory = new Category({
+      name,
+      description
+    });
+
+    try {
+      await newCategory.save();
+      res.redirect("/categories");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Error while saving new category!");
+    }
   });
 
 // Routes for updating a category

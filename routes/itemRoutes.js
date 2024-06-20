@@ -7,7 +7,7 @@ router
   .route("/")
   .get(async (req, res) => {
   try {
-    const items = await Item.find();
+    const items = await Item.find().populate("category");
     res.render("items", { items });
   } catch(err) {
     console.log(err);
@@ -15,7 +15,6 @@ router
   }
 });
 
-// Routes for creating a new item
 router
   .route("/create")
   .get(async (req, res) => {
