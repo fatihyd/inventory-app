@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1 Update item
+  .container
+    form(method='POST', action='/items/' + item._id + '/update')
+      fieldset
+        label(for='name') Name:
+        input#name(type='text', name='name', value=item.name)
+        label(for='description') Description:
+        input#description(type='text', name='description', value=item.description)
+        label(for='category') Category:
+        select#category(name='category')
+          each category in categories
+            option(value=category._id) #{category.name}
+        label(for='price') Price:
+        input#price(type='number', name='price', step='0.01', value=item.price)
+        label(for='number_in_stock') Number in Stock:
+        input#number_in_stock(type='number', name='number_in_stock', value=value=item.number_in_stock)
+        input(type='submit', value='Submit')
