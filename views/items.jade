@@ -26,8 +26,8 @@ block content
               td #{item.price}
               td #{item.number_in_stock}
               td
-                a(href='/' + item._id + '/update', class='button') Update
-                form(method='POST', action='/' + item._id + '/delete')
+                a(href='/items/' + item._id + '/update', class='button') Update
+                form(method='POST', action='/items/' + item._id + '/delete')
                   button(type='submit') Delete
     else
       p No items found.

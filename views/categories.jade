@@ -21,8 +21,8 @@ block content
               td #{category.name}
               td #{category.description}
               td
-                a(href='/' + category._id + '/update', class='button') Update
-                form(method='POST', action='/' + category._id + '/delete')
+                a(href='/categories' + category._id + '/update', class='button') Update
+                form(method='POST', action='/categories/' + category._id + '/delete')
                   button(type='submit') Delete
     else
       p No categories found.

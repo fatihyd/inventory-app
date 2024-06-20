@@ -53,11 +53,16 @@ router
     // Update an item
   });
 
-// Route to delete an item
 router
   .route("/:id/delete")
   .post(async (req, res) => {
-  // Delete an item
+  try {
+    await Item.findByIdAndDelete(req.params.id);
+    res.redirect("/items");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error while deleting an item!");
+  }
 });
 
 module.exports = router;

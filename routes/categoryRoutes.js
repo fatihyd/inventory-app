@@ -46,11 +46,16 @@ router
     // Update a category
   });
 
-// Route to delete a category
 router
   .route("/:id/delete")
   .post(async (req, res) => {
-  // Delete a category
+  try {
+    await Category.findByIdAndDelete(req.params.id);
+    res.redirect("/categories");
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error while deleting a category!");
+  }
 });
 
 module.exports = router;
