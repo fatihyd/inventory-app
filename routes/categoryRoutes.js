@@ -43,7 +43,6 @@ router
     res.render("update_category", { category });
   })
   .post(async (req, res) => {
-    // Update a category
     const { name, description } = req.body;
 
     const category = await Category.findById(req.params.id);
