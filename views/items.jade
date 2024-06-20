@@ -3,6 +3,10 @@ extends layout
 block content
   .container
     h1 Item List
+    a(href='/items/create', class='button') Create new item!
+    br
+    br
+    br
     if items.length > 0
       table
         thead

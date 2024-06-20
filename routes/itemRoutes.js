@@ -1,12 +1,11 @@
 var express = require("express");
 var router = express.Router();
 const Item = require("../models/item");
+const Category = require("../models/category");
 
-// Route to show all items
 router
   .route("/")
   .get(async (req, res) => {
-  // Show all items
   try {
     const items = await Item.find();
     res.render("items", { items });
@@ -20,10 +19,29 @@ router
 router
   .route("/create")
   .get(async (req, res) => {
-    // Show the page for creating a new item
+    const categories = await Category.find();
+    res.render("create_item", { categories });
   })
   .post(async (req, res) => {
-    // Create a new item
+    const { name, description, category, price, number_in_stock } = req.body;
+
+    const categoryObj = await Category.findById(category);
+
+    const newItem = new Item({
+      name,
+      description,
+      category: categoryObj,
+      price,
+      number_in_stock
+    });
+
+    try {
+      await newItem.save();
+      res.redirect("/items");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Error while saving new item!");
+    }
   });
 
 // Routes for updating an item

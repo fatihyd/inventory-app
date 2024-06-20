@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Create new item
+  .container
+    form(method='POST', action='/items/create')
+      fieldset
+        legend Create a new item:
+        label(for='name') Name:
+        input#name(type='text', name='name')
+        label(for='description') Description:
+        input#description(type='text', name='description')
+        label(for='category') Category:
+        select#category(name='category')
+          each category in categories
+            option(value=category._id) #{category.name}
+        label(for='price') Price:
+        input#price(type='number', name='price', step='0.01')
+        label(for='number_in_stock') Number in Stock:
+        input#number_in_stock(type='number', name='number_in_stock')
+        input(type='submit', value='Submit')
